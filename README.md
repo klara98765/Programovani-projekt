@@ -79,52 +79,39 @@ Aplikace je postavena na MVVM:
 
 cp .env.example .env
 
-Nastavení:
-
-POSTGRES_DB=filmoteka
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=postgres
-POSTGRES_HOST=localhost
-POSTGRES_PORT=5432
-2. Spuštění DB
+### 2. Spuštění DB
 docker compose up -d
-3. Inicializace databáze
+### 3. Inicializace databáze
 
 Při prvním spuštění se použije:
 
-schema.sql → vytvoření tabulek
-seed.sql → naplnění číselníku statusů
-🚀 Spuštění aplikace
-dotnet restore
+- schema.sql → vytvoření tabulek
+- seed.sql → naplnění číselníku statusů
+## 🚀 Spuštění aplikace
 dotnet run
-📁 Struktura projektu
-Filmoteka/
-├── Models/
-├── Repositories/
-├── ViewModels/
-├── Views/
-├── Services.cs
-├── docker-compose.yaml
-├── schema.sql
-├── seed.sql
-├── .env.example
-├── .gitignore
-└── README.md
-⚙️ Použité technologie
-Avalonia UI
-MVVM pattern
-PostgreSQL
-Docker Compose
-Repository pattern
-Dependency Injection (Microsoft.Extensions.DependencyInjection)
-Npgsql
-.env konfigurace
-⚠️ Důležité požadavky
-.env není součástí repozitáře
-SQL nesmí být ve ViewModelech (pouze v Repositories)
-MVVM musí být dodrženo (žádná logika ve Views)
-aplikace musí fungovat po docker compose up bez úprav
+## 📁 Struktura projektu
+- Filmoteka/
+- ├── Models/
+- ├── Repositories/
+- ├── ViewModels/
+- ├── Views/
+- ├── Services.cs
+- ├── docker-compose.yaml
+- ├── schema.sql
+- ├── seed.sql
+- ├── .env.example
+- ├── .gitignore
+- └── README.md
+## ⚙️ Použité technologie
+- Avalonia UI
+- MVVM pattern
+- PostgreSQL
+- Docker Compose
+- Repository pattern
+- Dependency Injection (Microsoft.Extensions.DependencyInjection)
+- Npgsql
+- .env konfigurace
 
-👤 Autor
+##👤 Autor
 Klára Němcová
 Školní projekt – 2. ročník
