@@ -1,0 +1,18 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: filmoteka-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${USERNAME}
+      POSTGRES_PASSWORD: ${PASSWORD}
+      POSTGRES_DB: ${DATABASE}
+    ports:
+      - "${PORT}:5432"
+    volumes:
+      - filmoteka-data:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./seed.sql:/docker-entrypoint-initdb.d/02-seed.sql:ro
+
+volumes:
+  filmoteka-data:

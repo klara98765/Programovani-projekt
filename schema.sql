@@ -1,23 +1,21 @@
-CREATE TABLE Status (
+CREATE TABLE IF NOT EXISTS watch_statuses (
     id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL
+    name VARCHAR(50) NOT NULL UNIQUE
 );
 
--- Hlavní entita
-CREATE TABLE Film (
+CREATE TABLE IF NOT EXISTS movies (
     id SERIAL PRIMARY KEY,
-    title TEXT NOT NULL,
-    year INT,
-    statusid INT NOT NULL,
-    FOREIGN KEY (statusid) REFERENCES Status(id)
+    title VARCHAR(150) NOT NULL,
+    director VARCHAR(120) NOT NULL,
+    release_year INTEGER NOT NULL CHECK (release_year >= 1888),
+    status_id INTEGER NOT NULL REFERENCES watch_statuses(id)
 );
 
--- Dětská entita
-CREATE TABLE Review (
+CREATE TABLE IF NOT EXISTS reviews (
     id SERIAL PRIMARY KEY,
-    filmid INT NOT NULL,
-    rating INT CHECK (rating BETWEEN 1 AND 10),
-    comment TEXT,
-    created DATE DEFAULT CURRENT_DATE,
-    FOREIGN KEY (filmid) REFERENCES Film(id) ON DELETE CASCADE
+    movie_id INTEGER NOT NULL REFERENCES movies(id) ON DELETE CASCADE,
+    author VARCHAR(100) NOT NULL,
+    rating INTEGER NOT NULL CHECK (rating BETWEEN 1 AND 10),
+    text TEXT NOT NULL,
+    reviewed_at DATE NOT NULL DEFAULT CURRENT_DATE
 );
