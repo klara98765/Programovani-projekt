@@ -1,0 +1,61 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Filmoteka.Views.MovieListView">
+  <Grid RowDefinitions="Auto,*" Margin="28">
+    <DockPanel>
+      <StackPanel DockPanel.Dock="Left">
+        <TextBlock Text="Filmotéka" FontSize="30" FontWeight="SemiBold" />
+        <TextBlock Text="Seznam filmů" FontSize="15" Foreground="#5f6368" />
+      </StackPanel>
+      <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right">
+        <Button Content="Přidat film" Command="{Binding AddMovieCommand}" Classes="accent" />
+      </StackPanel>
+    </DockPanel>
+
+    <Border Grid.Row="1" BorderBrush="#d7dadd" BorderThickness="1" CornerRadius="8" Margin="0,18,0,0">
+      <ScrollViewer>
+        <ItemsControl ItemsSource="{Binding Movies}">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate>
+              <Button Command="{Binding DataContext.OpenDetailCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                      CommandParameter="{Binding}"
+                      Background="Transparent"
+                      BorderThickness="0"
+                      Padding="0"
+                      HorizontalAlignment="Stretch"
+                      HorizontalContentAlignment="Stretch">
+                <Border BorderBrush="#edf0f2" BorderThickness="0,0,0,1" Padding="16">
+                  <Grid ColumnDefinitions="*,Auto">
+                    <StackPanel Spacing="4">
+                      <TextBlock Text="{Binding Title}" FontSize="18" FontWeight="SemiBold" />
+                      <TextBlock Foreground="#5f6368">
+                        <Run Text="{Binding Director}" />
+                        <Run Text=", " />
+                        <Run Text="{Binding ReleaseYear}" />
+                        <Run Text=" · " />
+                        <Run Text="{Binding StatusName}" />
+                      </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal"
+                                Spacing="8"
+                                VerticalAlignment="Center"
+                                Margin="16,0,0,0">
+                      <Button Content="Upravit"
+                              Command="{Binding DataContext.EditMovieCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                              CommandParameter="{Binding}" />
+                      <Button Content="Smazat"
+                              Command="{Binding DataContext.DeleteMovieCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                              CommandParameter="{Binding}" />
+                    </StackPanel>
+                  </Grid>
+                </Border>
+              </Button>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+      </ScrollViewer>
+    </Border>
+  </Grid>
+</UserControl>
