@@ -77,7 +77,6 @@ Aplikace je postavena na MVVM:
 
 ### 1. Vytvoření `.env`
 
-```bash
 cp .env.example .env
 
 Nastavení:
@@ -125,6 +124,7 @@ Npgsql
 SQL nesmí být ve ViewModelech (pouze v Repositories)
 MVVM musí být dodrženo (žádná logika ve Views)
 aplikace musí fungovat po docker compose up bez úprav
-👤 Autor
 
+👤 Autor
+Klára Němcová
 Školní projekt – 2. ročník
